@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.wraper{
+    display: grid;
+    grid-template-rows: 90% 10%;
+    width: 49%;
+    height: 65vh;
+    margin: 15px auto;
+}
+div{
+    border: 1px solid black;
+}
+.output, .input {
+    padding: 10px;
+    margin: 1px;
+}
