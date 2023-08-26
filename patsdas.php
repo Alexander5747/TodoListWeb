@@ -2,20 +2,16 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
 	mb_internal_encoding('UTF-8');
-    $connect = mysqli_connect("localhost", "root", "", "json_test");
-
-    $res = mysqli_query($connect, "SELECT value FROM test_json") or die (mysqli_error($connect));
-    $data=[];
-    while($row=mysqli_fetch_assoc($res)){
-        $data[]=$row;
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
+    $state;
+    foreach($data as $elem){
+         $state = $elem;
     }
 
-    for ($i=0; $i < count($data) ; $i++) { 
-        foreach ($data[$i] as $key => $value) {
-            
-            echo  $value . "<br>";
-        }
-    }
+    
+    $link = mysqli_connect("localhost","root","", "json_test");
 
-    mysqli_query($connect, "INSERT INTO test_json(value) VALUES('user')") or die(mysqli_error($connect));
+    $queryInsert = mysqli_query($link,"INSERT INTO test_json (value) VALUES ('$state')");
+
 ?>
